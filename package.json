@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/tryber/sd-025-a-project-recipes-app-full-stack/issues"
   },
-  "homepage": "https://github.com/tryber/sd-025-a-project-recipes-app-full-stack#readme"
+  "homepage": "https://github.com/tryber/sd-025-a-project-recipes-app-full-stack#readme",
+  "devDependencies": {
+    "axios": "^1.4.0",
+    "dotenv": "^16.0.3"
+  }
 }
