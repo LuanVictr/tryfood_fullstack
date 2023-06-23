@@ -1,0 +1,30 @@
+version: '3.9'
+services:
+  frontend:
+    container_name: app_frontend
+    build: ./frontend
+    ports:
+      - 3000:3000
+    working_dir: /app-frontend
+    volumes:
+      - ./frontend:/app_frontend
+  backend:
+    container_name: app_backend
+    build: ./backend
+    ports:
+      - 3001:3001
+    working_dir: /app-backend
+    command: dev
+    volumes:
+    - ./backend:/app-backend
+    environment:
+      - DB_USERNAME=user
+      - DB_PASSWORD=123456
+      - DB_NAME=midfit
+  mongodb:
+    container_name: recipes_app_db
+    image: mongo:5.0.7
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_URI='mongodb://localhost:27017/RecipesApp'

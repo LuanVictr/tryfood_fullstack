@@ -20,5 +20,8 @@
   "devDependencies": {
     "axios": "^1.4.0",
     "dotenv": "^16.0.3"
+  },
+  "dependencies": {
+    "nvm": "^0.0.4"
   }
 }
