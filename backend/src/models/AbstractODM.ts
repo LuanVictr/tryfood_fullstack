@@ -15,6 +15,16 @@ class AbstractODM<T> {
         const allItens = await this.model.find()
         return allItens;
     }
+
+    public async findByValue(category:string):Promise<T[]> {
+        const filteredItens = await this.model.find({"strCategory": category})
+        return filteredItens;
+    }
+
+    public async findById(id:number) {
+        const item = await this.model.find({idMeal: id});
+        return item
+    }
 }
 
 export default AbstractODM;

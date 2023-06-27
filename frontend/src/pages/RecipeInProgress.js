@@ -35,6 +35,7 @@ function RecipeInProgress() {
     const fetchAPI = async () => {
       if (path === 'foods') {
         const dataFood = await requestFoodById(id);
+        console.log(dataFood);
         setRequestedFood([dataFood]);
       } if (path === 'drinks') {
         const dataDrink = await requestDrinkById(id);

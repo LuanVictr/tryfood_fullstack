@@ -12,6 +12,26 @@ class DrinksController {
       res.status(500).json({message: error.message});
     }
   }
+
+  public findByValue = async (req: Request, res: Response) => {
+    try {
+      const { category } = req.params;
+      const filteredDrinks = await this.drinksService.findByValue(category);    
+      res.status(200).json(filteredDrinks);
+    } catch(error:any) {
+      res.status(404).json({message:error.message});
+    }
+  }
+
+  public findById = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const drink = await this.drinksService.findById(parseInt(id, 10));
+      res.status(200).json(drink);
+    } catch (error:any) {
+      res.status(404).json({message:error.message})
+    }
+  }
 }
 
 export default DrinksController;

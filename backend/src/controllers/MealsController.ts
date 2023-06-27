@@ -13,6 +13,26 @@ class MealsController {
         }
     }
 
+    public findByValue = async(req: Request, res: Response) => {
+        try {
+            const { category } = req.params;
+            const filteredItens = await this.services.findByValue(category)
+            res.status(200).json(filteredItens)
+        } catch(error:any) {
+            res.status(404).json({message:error.message})
+        }
+    }
+
+    public findById = async (req: Request, res: Response) => {
+        try {
+            const { id } = req.params;
+            const meal = await this.services.findById(parseInt(id, 10))
+            res.status(200).json(meal);
+        } catch(error:any) {
+            res.status(error.status).json({message: error.message});
+        }
+    }
+
 }
 
 export default MealsController

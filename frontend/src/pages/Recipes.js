@@ -4,7 +4,7 @@ import MyContext from '../context/MyContext';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import '../styles/recipes.css';
-import { requestDrinks, requestMeals } from '../utils/axiosApi';
+import { requestDrinks, requestDrinksByValue, requestDrinksCategories, requestMeals, requestMealsByValue, requestMealsCategories } from '../utils/axiosApi';
 
 function Recipes() {
   const history = useHistory();
@@ -26,8 +26,7 @@ function Recipes() {
         const slicedArrayFoods = dataFoods.meals.slice(0, maxRecipes);
         setRecipes(slicedArrayFoods);
 
-        const responseCategories = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
-        const dataCategories = await responseCategories.json();
+        const dataCategories = await requestMealsCategories()
         const slicedArrayCategories = dataCategories.meals.slice(0, maxCategories);
         setCategories(slicedArrayCategories);
       }
@@ -37,8 +36,7 @@ function Recipes() {
         const slicedArrayDrinks = dataDrinks.drinks.slice(0, maxRecipes);
         setRecipes(slicedArrayDrinks);
 
-        const responseCategories = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
-        const dataCategories = await responseCategories.json();
+        const dataCategories = await requestDrinksCategories()
         const slicedArrayCategories = dataCategories.drinks.slice(0, maxCategories);
         setCategories(slicedArrayCategories);
       }
@@ -68,7 +66,7 @@ function Recipes() {
       <div
         className="polaroid"
         data-testid={ `${index}-recipe-card` }
-        key={ name }
+        key={ index }
         onClick={ () => redirect(recipe) }
         onKeyDown={ redirect }
         aria-hidden
@@ -95,15 +93,14 @@ function Recipes() {
       }
       if (value !== 'All') {
         if (path === '/foods') {
-          const responseFoods = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${value}`);
-          const dataFoods = await responseFoods.json();
+          const dataFoods = await requestMealsByValue(value);
           const slicedArrayFoods = dataFoods.meals.slice(0, maxRecipes);
           setFilteredRecipes(slicedArrayFoods);
           setRecipeName(target.value);
         }
         if (path === '/drinks') {
-          const responseDrinks = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${value}`);
-          const dataDrinks = await responseDrinks.json();
+          
+          const dataDrinks = await requestDrinksByValue(value);
           const slicedArrayDrinks = dataDrinks.drinks.slice(0, maxRecipes);
           setFilteredRecipes(slicedArrayDrinks);
           setRecipeName(target.value);
