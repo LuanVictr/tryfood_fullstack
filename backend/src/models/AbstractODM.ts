@@ -11,7 +11,7 @@ class AbstractODM<T> {
         this.model = models[dbName] || model(dbName, this.schema);
     }
 
-    public async FindAll():Promise<T[]> {
+    public async findAll():Promise<T[]> {
         const allItens = await this.model.find()
         return allItens;
     }

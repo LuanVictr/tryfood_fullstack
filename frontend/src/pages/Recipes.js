@@ -4,6 +4,7 @@ import MyContext from '../context/MyContext';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import '../styles/recipes.css';
+import { requestDrinks, requestMeals } from '../utils/axiosApi';
 
 function Recipes() {
   const history = useHistory();
@@ -21,8 +22,7 @@ function Recipes() {
   useEffect(() => {
     const fetchAPI = async () => {
       if (path === '/foods') {
-        const responseFoods = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
-        const dataFoods = await responseFoods.json();
+        const dataFoods = await requestMeals();
         const slicedArrayFoods = dataFoods.meals.slice(0, maxRecipes);
         setRecipes(slicedArrayFoods);
 
@@ -31,9 +31,9 @@ function Recipes() {
         const slicedArrayCategories = dataCategories.meals.slice(0, maxCategories);
         setCategories(slicedArrayCategories);
       }
+
       if (path === '/drinks') {
-        const responseDrinks = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-        const dataDrinks = await responseDrinks.json();
+        const dataDrinks = await requestDrinks();
         const slicedArrayDrinks = dataDrinks.drinks.slice(0, maxRecipes);
         setRecipes(slicedArrayDrinks);
 
