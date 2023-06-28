@@ -18,6 +18,11 @@
 <li> Tela de receita em progresso, com acompanhamento de progresso da receita salvo no LocalStorage </li>
 </ul>
 
+![Gravação de tela de 28-06-2023 15_24_06 (1)](https://github.com/LuanVictr/tryfood_fullstack/assets/94076411/3b4990e8-a226-4d8c-ab56-8d9207286ef5)
+
+![Gravação de tela de 28-06-2023 15_27_40 (1)](https://github.com/LuanVictr/tryfood_fullstack/assets/94076411/c1a6c7c2-1577-42f7-8703-21a21d837332)
+
+
 <h4> Ferramentas Utilizadas: </h4>
 
 ##
