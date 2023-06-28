@@ -23,6 +23,13 @@ class DrinkService {
       "drinks": drink,
     };
   }
+
+  public async findByName(name:string) {
+    const foundDrink = await this.model.findByName(name);
+    return {
+      "drinks": foundDrink,
+    }
+  }
 }
 
 export default DrinkService;

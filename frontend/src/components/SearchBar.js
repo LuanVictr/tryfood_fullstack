@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import MyContext from '../context/MyContext';
 import '../styles/searchbar.css';
+import { requestDrinkByName, requestMealByName } from '../utils/axiosApi';
 
 function SearchBar() {
   const [searchInput, setSearchInput] = useState('');
@@ -39,8 +40,8 @@ function SearchBar() {
     }
     if (radioId === 'name') {
       try {
-        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInput}`);
-        const data = await response.json();
+        const data = await requestMealByName(searchInput);
+        console.log(data);
         const dataFiltered = data.meals.slice(0, maxRecipes);
         setFilteredRecipes(dataFiltered);
         verificaData(dataFiltered);
@@ -77,8 +78,8 @@ function SearchBar() {
     }
     if (radioId === 'name') {
       try {
-        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchInput}`);
-        const data = await response.json();
+        const data = await requestDrinkByName(searchInput);
+        console.log(data)
         const dataFiltered = data.drinks.slice(0, maxRecipes);
         setFilteredRecipes(dataFiltered);
         verificaData(dataFiltered);

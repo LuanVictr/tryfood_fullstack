@@ -32,6 +32,16 @@ class DrinksController {
       res.status(404).json({message:error.message})
     }
   }
+
+  public findByName = async (req: Request, res: Response) => {
+    try {
+      const { name } = req.params;
+      const foundDrink = await this.drinksService.findByName(name)
+      res.status(200).json(foundDrink);
+    } catch (error:any) {
+      res.status(404).json({message:error.message})
+    }
+  }
 }
 
 export default DrinksController;

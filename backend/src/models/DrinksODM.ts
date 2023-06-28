@@ -60,6 +60,11 @@ class DrinkODM extends AbstractODM<IDrinks> {
 
       super(schema, 'drinks')
   }
+
+  public async findByName(name:string) {
+    const itemFound = await this.model.find({"strDrink":name});
+    return itemFound;
+}
 }
 
 export default DrinkODM;

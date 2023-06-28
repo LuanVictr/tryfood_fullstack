@@ -29,6 +29,25 @@ class MealsService {
       throw Object.assign(new Error(error.message), {status: 404});
     }
   }
+
+  public async findByName(name:string) {
+    try {
+      const mealFound = await this.Model.findByName(name);
+      return {
+        "meals":mealFound,
+      }
+    } catch (error:any) {
+      throw Object.assign(new Error(error.message), {status: 404});
+    }
+  }
+
+  public async findByFirstLetter(letter:string) {
+    const mealFound = await this.Model.findByFirstLetter(letter);
+    return {
+      "meals": mealFound,
+    };
+  }
+  
 }
 
 export default MealsService;

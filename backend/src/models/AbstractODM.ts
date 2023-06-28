@@ -25,6 +25,7 @@ class AbstractODM<T> {
         const item = await this.model.find({idMeal: id});
         return item
     }
+    
 }
 
 export default AbstractODM;

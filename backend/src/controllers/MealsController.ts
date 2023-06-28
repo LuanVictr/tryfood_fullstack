@@ -33,6 +33,26 @@ class MealsController {
         }
     }
 
+    public findByName = async ( req: Request, res: Response ) => {
+        try {
+            const { name } = req.params;
+            const mealFound = await this.services.findByName(name);
+            res.status(200).json(mealFound);
+        } catch (error:any) {
+            res.status(error.status).json({message:error.message});
+        }
+    }
+
+    public findByFirstLetter = async ( req: Request, res: Response ) => {
+        try {
+            const { letter } = req.params;
+            const mealsFound = await this.services.findByFirstLetter(letter);
+            res.status(200).json(mealsFound);
+        } catch(error:any) {
+            res.status(404).json({message:error.message});
+        }
+    }
+
 }
 
 export default MealsController

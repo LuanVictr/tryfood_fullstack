@@ -1,6 +1,6 @@
 @media (max-width: 361px ) { 
   .search-container {
-    background-color: #ffe0d4;
+    background-color: white;
     width: 360px;
     display: flex;
     flex-flow: column;

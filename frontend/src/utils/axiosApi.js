@@ -43,3 +43,13 @@ export const requestDrinksById = async (id) => {
     const { data } = await api.get(`/drinks/id/${id}`);
     return data;
 }
+
+export const requestMealByName = async (name) => {
+    const { data } = await api.get(`/meals/search/${name}`);
+    return data;
+}
+
+export const requestDrinkByName = async (name) => {
+    const { data } = await api.get(`/drinks/search/${name}`);
+    return data;
+}

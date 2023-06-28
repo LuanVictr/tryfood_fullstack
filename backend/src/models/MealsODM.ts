@@ -62,6 +62,16 @@ class MealsODM extends AbstractODM<IMeals> {
 
   super(schema, 'meals')
   }
+
+  public async findByName(letter:string) {
+    const itemFound = await this.model.find({"strMeal":name});
+    return itemFound;
+}
+
+  public async findByFirstLetter(letter:string) {
+    const itensFound = await this.model.find({"strMeal": `/^${letter}`})
+    return itensFound;
+  }
 }
 
 export default MealsODM;
